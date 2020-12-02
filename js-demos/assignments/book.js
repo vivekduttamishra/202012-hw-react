@@ -31,19 +31,41 @@ class BookManager{
     }
 
     getBooksByAuthor(author){
-        //todo:
+        
+        let result=[];
+        for(let book of this.books)
+            if(book.author==author)
+                result.push(book);
+
+        return result;
+
     }
 
     getBooksInPriceRange(min,max){
-        //todo:
+        let result=[];
+        for(let book of this.books)
+            if(book.price>=min && book.price<max)
+                result.push(book);
+
+        return result;
     }
 
     getBooksInRatingRange(min,max){
+        let result=[];
+        for(let book of this.books)
+            if(book.rating>=min && book.rating<max)
+                result.push(book);
 
+        return result;
     }
 
     search(text){
+        let result=[];
+        for(let book of this.books)
+            if(book.title.indexOf(text)>=0 || book.author.indexOf(text)>=0)
+                result.push(book);
 
+        return result;
     }
 }
 
@@ -66,3 +88,6 @@ showBooks(manager.getAll(), "All Books");
 
 showBooks(manager.getBooksByAuthor("John Grisham"),"Books by John Grisham");
 
+showBooks(manager.getBooksInRatingRange(4.1,5.0),"High rated books");
+
+showBooks(manager.getBooksInPriceRange(0,200),"Low cost books");
