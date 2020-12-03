@@ -13,6 +13,10 @@ let email=person.email;
 console.log('name',name);
 console.log('email',email);
 
+//to access phone number as cell phone
+
+let cellPhone= person.cell; // es2015    let {cell:cellPhone} = person;
+
 
 
 
