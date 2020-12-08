@@ -1,24 +1,30 @@
 import React from 'react';
 
 interface CellProps{
-
     value:string;
-
+    id:number|string;    
+    winningMoves:number[]|null;
+    over:boolean;
     cellClicked():void;
-
 }
 
-const cell= ({value,cellClicked}:CellProps)=>{
+const cell= ({value,cellClicked,id,winningMoves,over}:CellProps)=>{
 
     let cellStyle={
-       // background: value?'#EEE':'white',
-        cursor: value? 'not-allowed':'pointer'
+        background: value||over?'#EEE':'white',
+        cursor: value||over? 'not-allowed':'pointer'
     };
 
-    let handler= value? (()=>console.log('you cant click here')) : cellClicked;
+    let handler= value||over? (()=>console.log('you cant click here')) : cellClicked;
     
     //const disabled= value?true:false;
     const disabled=false;
+
+    if(winningMoves ){
+        let [a,b,c]=winningMoves;
+        if(id===a || id===b || id===c)
+            cellStyle.background='lightgreen';
+    }
 
     return (
         <button onClick={handler}

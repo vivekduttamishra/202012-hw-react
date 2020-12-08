@@ -27,16 +27,9 @@ code {
   margin:0px;
 }
 
-.cell :hover{
-  background-color:lightyellow;
-}
-
 .game{
   padding:10%;
   align-items:center center;
   
 }
 
-.winner{
-  background-color: lightgreen;
-}
