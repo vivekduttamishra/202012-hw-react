@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import { Book } from '../model/Book';
 import { LocalBookService } from '../services/LocalBookService';
-import { BookList } from './BookList';
+import { BookManager } from './BookManager';
+
 import { Footer } from './Footer';
 import { Header } from './Header';
 
@@ -72,6 +73,8 @@ export default class BMSApp extends Component<BMSAppProps,BMSAppState>{
             ],
             
         };
+
+
     }
 
 
@@ -80,7 +83,7 @@ export default class BMSApp extends Component<BMSAppProps,BMSAppState>{
             <div className='App'>
                 <Header title='Books Web'/>
                 <div className='container'>
-                    <BookList  books={this.state.books} />
+                    <BookManager books={this.state.books} />
                 </div>
                 <Footer/>
             </div>     
