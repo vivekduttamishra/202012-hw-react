@@ -15,6 +15,8 @@ import { UserLogin } from './UseLogin';
 import { UserRegistration } from './UserRegistration';
 import { NotFound } from './NotFound';
 
+import { BookDetails } from './BookDetails';
+
 interface BMSAppProps {
 
 };
@@ -56,10 +58,10 @@ export default class BMSApp extends Component<BMSAppProps, BMSAppState>{
                             <Route exact path='/' component={BookList} />
                             <Route path='/books/add' component={BookEditor} />
                             <Route path='/books/manager' component={BookManager} />
-                            
+                            <Route path='/book/:isbn' component={BookDetails} />
                             <Route path='/user/signin' component={UserLogin} />
                             <Route path='/user/signup' component={UserRegistration} />
-
+                            <Route path='/notfound' component={NotFound} />
                             <Route path='**' component={NotFound} />
                         </Switch>
                     </div>

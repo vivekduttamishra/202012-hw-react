@@ -1,52 +1,47 @@
 import React from 'react';
-import { Book } from '../model/Book';
+import {Book} from '../model/Book';
+import {} from 'react-router-dom';
+import { HttpBookService } from '../services/HttpBookService';
+import { BookInfo } from './BookInfo';
+import { NotFound } from './NotFound';
 
-interface BookProps {
-    book?: Book | null;
+interface BookDetailsState{
+    selectedBook?:Book|null;
+    isbn:string|null;
+    error?:any;
 }
 
+export class BookDetails extends React.Component<any,BookDetailsState,BookDetailsState>{
 
-export const BookDetails = ({ book }: BookProps) => {
+    service= new HttpBookService();
+    state={
+        selectedBook:null,
+        isbn:null,
+        error:null
+    }
 
+    async componentDidMount(){
 
+        try{
+            console.log('params',this.props.match.params);
+            let isbn=this.props.match.params.isbn;
+            this.setState({isbn});
+            let selectedBook=await this.service.getBookByIsbn(isbn);
+            this.setState({selectedBook,error:null});
+        } catch(error){
+            this.setState({error,selectedBook:null})
+        }
 
-    return (
-        <div>
-            {book ? (
-                <div className='container'>
-                    <h2>{book.title}</h2>
-                    <div className='row'>
-                        <div className='col col-6'>
-                            <ul>
-                                <li>Author {book.author}</li>
-                                <li>Price  {book.price}</li>
-                                <li>Rating {book.rating}</li>
-                            </ul>
-                        </div>
-                        <div className='col col-6'>
-                            <img src={book.cover} width='150' alt={book.title} />
-                        </div>
-                    </div>
-                    <div className='row'>
-                        {book.description}
-                    </div>
-                    <div className='tags'>
-                        <ul>
-                            {book.tags.map(tag=><li>{tag}</li>) }
-                        </ul>
-                    </div>
-                    
-                </div>
-            ) : (
-                    <div className='container'>
-                        <h2>Please Select your book</h2>                        
-                    </div>
-                )}
+    }
+    
 
+    render(){
+        if(this.state.error)
+            return (<NotFound/>)
+        if(!this.state.selectedBook)
+            return (<img src='/images/loading.gif' alt='loading'/>)
+        else
+            return (<BookInfo book={this.state.selectedBook}/>)
+    }
 
-
-        </div>);
-};
-
-
-//export BookDetails;
+}

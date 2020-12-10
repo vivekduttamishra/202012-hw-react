@@ -1,6 +1,6 @@
 import React from 'react';
 import { Book } from '../model/Book';
-import { BookDetails } from './BookDetails';
+import { BookInfo } from './BookInfo';
 
 interface BookManagerProps {
     books: Book[];
@@ -52,7 +52,7 @@ export class BookManager extends React.Component<BookManagerProps,BookManagerSta
                        <BookTitleList books={this.props.books} selectedBook={this.state.selectedBook} onSelect={this.selectBook} />
                     </div>
                     <div className='col col-8'>
-                        <BookDetails book={this.state.selectedBook} />
+                        <BookInfo book={this.state.selectedBook} />
                     </div>
                 </div>
             </div>

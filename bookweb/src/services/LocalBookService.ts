@@ -1,4 +1,3 @@
-import { setTimeout } from "timers";
 import { Book } from "../model/Book";
 
 import { delay } from "./utils";

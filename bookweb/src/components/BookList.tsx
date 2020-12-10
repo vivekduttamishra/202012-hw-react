@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Book } from '../model/Book';
 import { HttpBookService } from '../services/HttpBookService';
 import { delay } from '../services/utils';
@@ -27,7 +28,7 @@ export class BookList extends React.Component<BookListProps,BookListState,BookLi
     service= new HttpBookService();
 
     componentDidMount=async()=>{
-        await delay(2000);
+        //await delay(2000);
         let books=await this.service.getBooks();
         this.setState({books});
     }
@@ -56,7 +57,7 @@ export class BookList extends React.Component<BookListProps,BookListState,BookLi
                             this.state.books.map( book=>(
                                 <tr key={book.isbn}>
                                     <td><img src={`/images/books/${book.isbn}.jpg`} width='50' alt={book.title}/></td>
-                                    <td>{book.title}</td>
+                                    <td><Link to={`/book/${book.isbn}`}  >{book.title}</Link> </td>
                                     <td>{book.author}</td>
                                     <td>{book.rating}</td>
                                 </tr>
