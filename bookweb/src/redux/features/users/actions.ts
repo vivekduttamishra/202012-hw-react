@@ -1,4 +1,4 @@
-import {User,UserService} from '../../model/user';
+import {User,UserService} from '../../../model/User';
 
 export const ACTION_LOGIN='ACTION_LOGIN';
 export const ACTION_LOGIN_PENDING='ACTION_LOGIN_PENDING';
