@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import { LoginInfo } from './LoginInfo';
 
 export interface HeaderProps {
     title: String;
@@ -30,14 +31,8 @@ export const Header = ({title}: HeaderProps) => {
                         <Link className="nav-link" to="/books/manager"><i className="fa fa-edit"></i> Manage Book</Link>
                     </li>
                 </ul>
-                <ul className="navbar-nav ">                    
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/user/signin">Login</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/user/signup">Register</Link>
-                    </li>
-                </ul>
+                
+                <LoginInfo/>
                 
             </div>
         </nav>
